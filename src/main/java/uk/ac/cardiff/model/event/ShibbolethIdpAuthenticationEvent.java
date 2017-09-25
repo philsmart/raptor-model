@@ -42,23 +42,11 @@ public class ShibbolethIdpAuthenticationEvent extends AuthenticationEvent {
 	/** The request id. */
 	private String requestId;
 
-	/** The message profile id. */
-	private String messageProfileId;
-
 	/** The response binding. */
 	private String responseBinding;
 
-	/** The response id. */
-	private String responseId;
-
 	/** The request binding. */
 	private String requestBinding;
-
-	/** The name identifier. */
-	private String nameIdentifier;
-
-	/** The assertion ids for the released attributes. */
-	private String[] assertions;
 
 	/** The released attributes. */
 	private String[] attributes;
@@ -88,15 +76,13 @@ public class ShibbolethIdpAuthenticationEvent extends AuthenticationEvent {
 	protected ShibbolethIdpAuthenticationEvent(final ShibbolethIdpAuthenticationEvent event) {
 		super(event);
 		this.requestId = event.getRequestId();
-		this.messageProfileId = event.getMessageProfileId();
+
 		this.responseBinding = event.getResponseBinding();
-		this.responseId = event.getResponseId();
+
 		this.requestBinding = event.getRequestBinding();
-		this.nameIdentifier = event.getNameIdentifier();
 
 		// shallow copy is OK here, as a new array is created with immutable
 		// objects (String).
-		this.assertions = event.getAssertions().clone();
 		this.attributes = event.getAttributes().clone();
 	}
 
@@ -149,25 +135,6 @@ public class ShibbolethIdpAuthenticationEvent extends AuthenticationEvent {
 	}
 
 	/**
-	 * Sets the message profile id.
-	 * 
-	 * @param messageProfileId
-	 *            the new message profile id
-	 */
-	public void setMessageProfileId(final String messageProfileId) {
-		this.messageProfileId = messageProfileId;
-	}
-
-	/**
-	 * Gets the message profile id.
-	 * 
-	 * @return the message profile id
-	 */
-	public String getMessageProfileId() {
-		return messageProfileId;
-	}
-
-	/**
 	 * Sets the released attributes.
 	 * 
 	 * @param releasedAttributes
@@ -217,15 +184,11 @@ public class ShibbolethIdpAuthenticationEvent extends AuthenticationEvent {
 				&& EqualsUtil.areEqual(this.getRequestId(), that.getRequestId())
 				&& EqualsUtil.areEqual(this.getResponseBinding(), that.getResponseBinding())
 				&& EqualsUtil.areEqual(this.getResourceHost(), that.getResourceHost())
-				&& EqualsUtil.areEqual(this.getMessageProfileId(), that.getMessageProfileId())
 				&& EqualsUtil.areEqual(this.getRequestBinding(), that.getRequestBinding())
 				&& EqualsUtil.areEqual(this.getPrincipalName(), that.getPrincipalName())
-				&& EqualsUtil.areEqual(this.getNameIdentifier(), that.getNameIdentifier())
-				&& EqualsUtil.areEqual(this.getResponseId(), that.getResponseId())
 				&& EqualsUtil.areEqual(this.getServiceId(), that.getServiceId())
 				&& EqualsUtil.areEqual(this.getEventType(), that.getEventType())
 				&& EqualsUtil.areEqual(this.getResourceId(), that.getResourceId())
-				&& Arrays.equals(this.getAssertions(), that.getAssertions())
 				&& Arrays.equals(this.getAttributes(), that.getAttributes());
 
 		return areEqual;
@@ -268,74 +231,13 @@ public class ShibbolethIdpAuthenticationEvent extends AuthenticationEvent {
 		hash = HashCodeUtil.hash(hash, getResponseBinding());
 		hash = HashCodeUtil.hash(hash, getResourceHost());
 		hash = HashCodeUtil.hash(hash, getAttributes());
-		hash = HashCodeUtil.hash(hash, getMessageProfileId());
 		hash = HashCodeUtil.hash(hash, getRequestBinding());
 		hash = HashCodeUtil.hash(hash, getPrincipalName());
-		hash = HashCodeUtil.hash(hash, getNameIdentifier());
-		hash = HashCodeUtil.hash(hash, getResponseId());
-		hash = HashCodeUtil.hash(hash, getAssertions());
 		hash = HashCodeUtil.hash(hash, getEventType());
 		hash = HashCodeUtil.hash(hash, getServiceId());
 		hash = HashCodeUtil.hash(hash, getResourceId());
 		return hash;
 
-	}
-
-	/**
-	 * Sets the name identifier.
-	 * 
-	 * @param nameIdentifier
-	 *            the new name identifier
-	 */
-	public void setNameIdentifier(final String nameIdentifier) {
-		this.nameIdentifier = nameIdentifier;
-	}
-
-	/**
-	 * Gets the name identifier.
-	 * 
-	 * @return the name identifier
-	 */
-	public String getNameIdentifier() {
-		return nameIdentifier;
-	}
-
-	/**
-	 * Sets the assertion id.
-	 * 
-	 * @param assertionId
-	 *            the new assertion id
-	 */
-	public void setAssertions(final String[] assertionId) {
-		this.assertions = assertionId;
-	}
-
-	/**
-	 * Gets the assertion id.
-	 * 
-	 * @return the assertion id
-	 */
-	public String[] getAssertions() {
-		return assertions;
-	}
-
-	/**
-	 * Sets the response id.
-	 * 
-	 * @param responseId
-	 *            the new response id
-	 */
-	public void setResponseId(final String responseId) {
-		this.responseId = responseId;
-	}
-
-	/**
-	 * Gets the response id.
-	 * 
-	 * @return the response id
-	 */
-	public String getResponseId() {
-		return responseId;
 	}
 
 	/**
