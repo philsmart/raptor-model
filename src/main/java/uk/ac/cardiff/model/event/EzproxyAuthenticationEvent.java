@@ -39,9 +39,6 @@ public class EzproxyAuthenticationEvent extends AuthenticationEvent {
 	/** The requester ip. */
 	private String requesterIp;
 
-	/** The session id. */
-	private String sessionId;
-
 	/**
 	 * Instantiates a new ezproxy authentication event.
 	 */
@@ -58,7 +55,6 @@ public class EzproxyAuthenticationEvent extends AuthenticationEvent {
 	protected EzproxyAuthenticationEvent(final EzproxyAuthenticationEvent event) {
 		super(event);
 		this.requesterIp = event.getRequesterIp();
-		this.sessionId = event.getSessionId();
 	}
 
 	/**
@@ -89,25 +85,6 @@ public class EzproxyAuthenticationEvent extends AuthenticationEvent {
 		return requesterIp;
 	}
 
-	/**
-	 * Sets the session id.
-	 * 
-	 * @param sessionId
-	 *            the sessionId to set
-	 */
-	public void setSessionId(final String sessionId) {
-		this.sessionId = sessionId;
-	}
-
-	/**
-	 * Gets the session id.
-	 * 
-	 * @return the sessionId
-	 */
-	public String getSessionId() {
-		return sessionId;
-	}
-
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -132,7 +109,6 @@ public class EzproxyAuthenticationEvent extends AuthenticationEvent {
 		hash = HashCodeUtil.hash(hash, getAuthenticationType());
 		hash = HashCodeUtil.hash(hash, getServiceHost());
 		hash = HashCodeUtil.hash(hash, getRequesterIp());
-		hash = HashCodeUtil.hash(hash, getSessionId());
 		hash = HashCodeUtil.hash(hash, getResourceHost());
 		hash = HashCodeUtil.hash(hash, getPrincipalName());
 		hash = HashCodeUtil.hash(hash, getEventType());
@@ -182,7 +158,6 @@ public class EzproxyAuthenticationEvent extends AuthenticationEvent {
 				&& EqualsUtil.areEqual(this.getAuthenticationType(), that.getAuthenticationType())
 				&& EqualsUtil.areEqual(this.getServiceHost(), that.getServiceHost())
 				&& EqualsUtil.areEqual(this.getRequesterIp(), that.getRequesterIp())
-				&& EqualsUtil.areEqual(this.getSessionId(), that.getSessionId())
 				&& EqualsUtil.areEqual(this.getResourceHost(), that.getResourceHost())
 				&& EqualsUtil.areEqual(this.getServiceId(), that.getServiceId())
 				&& EqualsUtil.areEqual(this.getEventType(), that.getEventType())
