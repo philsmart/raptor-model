@@ -28,10 +28,10 @@ import javax.persistence.Embeddable;
 public class EventMetadata {
 
 	/**
-	 * The entityId of the service the associated
+	 * The entityId of the Raptor service the associated
 	 * {@link uk.ac.cardiff.model.event.Event} applies to
 	 */
-	private String entityId;
+	private String raptorEntityId;
 
 	/**
 	 * The hostname of the service the {@link uk.ac.cardiff.model.event.Event}
@@ -46,21 +46,10 @@ public class EventMetadata {
 	private String organisationName;
 
 	/**
-	 * @param entityId
-	 *            the entityId to set
-	 */
-	public void setEntityId(final String entityId) {
-		this.entityId = entityId;
-	}
-
-	/**
-	 * @return the entityId
-	 */
-	public String getEntityId() {
-		return entityId;
-	}
-
-	/**
+	 * 
+	 * 
+	 * /**
+	 * 
 	 * @param serviceName
 	 *            the serviceName to set
 	 */
@@ -92,8 +81,23 @@ public class EventMetadata {
 
 	@Override
 	public String toString() {
-		return "EventMetadata [entityId=" + entityId + ", serviceName=" + serviceName + ", organisationName="
+		return "EventMetadata [entityId=" + raptorEntityId + ", serviceName=" + serviceName + ", organisationName="
 				+ organisationName + "]";
+	}
+
+	/**
+	 * @return the raptorEntityId
+	 */
+	public String getRaptorEntityId() {
+		return raptorEntityId;
+	}
+
+	/**
+	 * @param raptorEntityId
+	 *            the raptorEntityId to set
+	 */
+	public void setRaptorEntityId(final String raptorEntityId) {
+		this.raptorEntityId = raptorEntityId;
 	}
 
 }
