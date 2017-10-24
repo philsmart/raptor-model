@@ -1,7 +1,9 @@
 package uk.ac.cardiff.model.event;
 
 /**
- * Used when a null event is needed, e.g. logging orElse.
+ * <p>
+ * Used when a null event (often dummy event) is needed, e.g. logging orElse.
+ * </p>
  * 
  * @author philsmart
  *

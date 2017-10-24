@@ -32,10 +32,20 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import uk.ac.cardiff.model.event.auxiliary.EventMetadata;
 
 /**
+ * <p>
+ * The base class for any Event. An Event is defined as any message that is
+ * produced by a system at a given instance in time.
+ * </p>
+ * 
+ * <p>
+ * This class must be extended, and can not be used directly
+ * </p>
+ * 
+ * <p>
  * For any class that extends this class, equality must be computed for the same
  * fields as the hash. Otherwise a discrepancy will occur when checking
- * containment through object equality (e.g. set containment), and through
- * hashcodes.
+ * containment through object equality (e.g. set containment) - using hashcodes.
+ * </p>
  * 
  * @author philsmart
  * 
@@ -44,19 +54,13 @@ import uk.ac.cardiff.model.event.auxiliary.EventMetadata;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class Event {
 
-	/**
-	 * used if a persistant db primary key is required. Not to be used in the
-	 * computation of the hash or equals methods
-	 */
-	private Long persistantId;
-
 	/** The date and time the event was generated. */
 	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentDateTime")
 	private DateTime eventTime;
 
 	/**
-	 * Event id, as generated and added by the hashcode of this method. Not to
-	 * be used in computation of the hash or equals methods.
+	 * Event id, as generated and added by the hashcode of this method. Not to be
+	 * used in computation of the hash or equals methods.
 	 */
 	@Id
 	private int eventId;
@@ -76,7 +80,10 @@ public abstract class Event {
 	/** The hostname of the resource you are using. */
 	private String resourceHost;
 
-	/** The resource id. This is the identifier of resource you are using. */
+	/**
+	 * The resource id. This is the identifier of the remote resource the event
+	 * relates to.
+	 */
 	private String resourceId;
 
 	/**
@@ -86,8 +93,8 @@ public abstract class Event {
 	private int resourceIdCategory;
 
 	/**
-	 * Metadata about the service this event was generated from. Not used in
-	 * Hash or Equality methods.
+	 * Metadata about the service this event was generated from. Not used in Hash or
+	 * Equality methods.
 	 */
 	@Embedded
 	private EventMetadata eventMetadata;
@@ -130,40 +137,21 @@ public abstract class Event {
 	/**
 	 * Returns the eventTime using a defensive copy.
 	 * 
-	 * @return the event time
+	 * @return the event time as {@link DateTime}
 	 */
 	public DateTime getEventTime() {
 		return new DateTime(eventTime);
 	}
 
 	/**
-	 * Gets the event time in milliseconds since EPOCH. Used for consistent
-	 * hashing of the <code>eventTime<code> field.
+	 * Gets the event time in milliseconds since EPOCH. Used for consistent hashing
+	 * of the {@code eventTime} field.
 	 * 
-	 * @return the event time millis
+	 * @return the event time millis as a {@link Long}
 	 */
 	@JsonIgnore
 	public long getEventTimeMillis() {
 		return eventTime.getMillis();
-	}
-
-	/**
-	 * Sets the persistant id.
-	 * 
-	 * @param persistantId
-	 *            the new persistant id
-	 */
-	public void setPersistantId(final Long persistantId) {
-		this.persistantId = persistantId;
-	}
-
-	/**
-	 * Gets the persistant id.
-	 * 
-	 * @return the persistant id
-	 */
-	public Long getPersistantId() {
-		return persistantId;
 	}
 
 	/**

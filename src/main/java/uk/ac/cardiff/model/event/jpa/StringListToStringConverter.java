@@ -8,8 +8,8 @@ import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
 /**
- * Convert any and all List<String> of any registered entity to a single pipe
- * Delimited string.
+ * Convert any and all {@link List} of {@link String}s of any registered entity
+ * to a single pipe ('|') Delimited string.
  * 
  * @author philsmart
  *
