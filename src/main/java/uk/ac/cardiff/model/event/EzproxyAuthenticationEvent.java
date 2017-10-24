@@ -13,9 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- *
- */
+
 package uk.ac.cardiff.model.event;
 
 import javax.persistence.DiscriminatorColumn;
@@ -27,7 +25,10 @@ import uk.ac.cardiff.utility.HashCodeUtil;
 import uk.ac.cardiff.utility.StringUtils;
 
 /**
- * The Class EzproxyAuthenticationEvent.
+ * <p>
+ * A specialisation of an {@link AuthenticationEvent}. This is specific to an
+ * authentication message harvested from an ezproxy log file.
+ * </p>
  * 
  * @author philsmart
  */
@@ -96,9 +97,10 @@ public class EzproxyAuthenticationEvent extends AuthenticationEvent {
 	}
 
 	/**
-	 * create a unique hash, with as uniform a distribution as possible.
+	 * Create a unique hash, with as uniform a distribution as possible.
 	 * 
-	 * @return the int
+	 * @return the hash of the fields in this class and its superclasses represented
+	 *         as an integer
 	 */
 	@Override
 	public int hashCode() {
@@ -129,8 +131,8 @@ public class EzproxyAuthenticationEvent extends AuthenticationEvent {
 	}
 
 	/**
-	 * For hibernate, does nothing as the hascode is computed on the fly from
-	 * the <code>hashCode</code> method.
+	 * For JPA, does nothing as the hashcode is computed on the fly from the
+	 * {@code hashCode} method.
 	 * 
 	 * @param hashCode
 	 *            the new hash code

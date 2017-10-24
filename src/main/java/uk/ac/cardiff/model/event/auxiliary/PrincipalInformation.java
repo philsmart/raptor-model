@@ -17,8 +17,23 @@ package uk.ac.cardiff.model.event.auxiliary;
 
 import javax.persistence.Embeddable;
 
+import uk.ac.cardiff.model.event.AuthenticationEvent;
+import uk.ac.cardiff.model.event.Event;
 import uk.ac.cardiff.utility.StringUtils;
 
+/**
+ * <p>
+ * A {@link PrincipalInformation} instance can be attached to an
+ * {@link AuthenticationEvent} during attribute expansion. This contains
+ * additional information relating to the
+ * {@link AuthenticationEvent#getPrincipalName()} of the event.
+ * </p>
+ * 
+ * <p>
+ * It is embedded in the same table as {@link Event} during persistence.
+ * </p>
+ *
+ */
 @Embeddable
 public class PrincipalInformation {
 
@@ -26,8 +41,7 @@ public class PrincipalInformation {
 	private String school;
 
 	/**
-	 * The affiliation this principal has with their current school or
-	 * department
+	 * The affiliation this principal has with their current school or department
 	 */
 	private String affiliation;
 

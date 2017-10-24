@@ -20,8 +20,13 @@ package uk.ac.cardiff.model.event.auxiliary;
 
 import javax.persistence.Embeddable;
 
+import uk.ac.cardiff.model.event.Event;
+
 /**
- * @author philsmart
+ * <p>
+ * Metadata about the {@link Event} message. Relates to the Raptor service that
+ * harvested the event and the organisation that belongs to.
+ * </p>
  *
  */
 @Embeddable
@@ -29,7 +34,7 @@ public class EventMetadata {
 
 	/**
 	 * The entityId of the Raptor service the associated
-	 * {@link uk.ac.cardiff.model.event.Event} applies to
+	 * {@link uk.ac.cardiff.model.event.Event} applies to.
 	 */
 	private String raptorEntityId;
 

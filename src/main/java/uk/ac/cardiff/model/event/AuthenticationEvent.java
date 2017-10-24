@@ -13,9 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-/**
- *
- */
+
 package uk.ac.cardiff.model.event;
 
 import javax.persistence.Embedded;
@@ -26,6 +24,15 @@ import javax.persistence.InheritanceType;
 import uk.ac.cardiff.model.event.auxiliary.PrincipalInformation;
 
 /**
+ * <p>
+ * Specialisation of an {@link Event}, that represents an authentication message
+ * at an instant in time.
+ * </p>
+ * 
+ * <p>
+ * Can not be instantiated directly.
+ * </p>
+ * 
  * @author philsmart
  *
  */
@@ -33,6 +40,7 @@ import uk.ac.cardiff.model.event.auxiliary.PrincipalInformation;
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public abstract class AuthenticationEvent extends Event {
 
+	/** The authentication type. */
 	private String authenticationType;
 
 	/**
@@ -42,20 +50,23 @@ public abstract class AuthenticationEvent extends Event {
 	private String principalName;
 
 	/**
-	 * This is fixed to a principal expansion. Not used in Hash or Equality
-	 * methods
+	 * This is fixed to a principal expansion. Not used in Hash or Equality methods
 	 */
 	@Embedded
 	private PrincipalInformation principalInformation;
 
+	/**
+	 * Instantiates a new authentication event.
+	 */
 	public AuthenticationEvent() {
 		super();
 	}
 
 	/**
-	 * Copy constructor
+	 * Copy constructor.
 	 *
 	 * @param event
+	 *            the event
 	 */
 	protected AuthenticationEvent(final AuthenticationEvent event) {
 		super(event);
@@ -67,23 +78,47 @@ public abstract class AuthenticationEvent extends Event {
 
 	}
 
+	/**
+	 * Sets the principal name.
+	 *
+	 * @param principal
+	 *            the new principal name
+	 */
 	public void setPrincipalName(final String principal) {
 		this.principalName = principal;
 	}
 
+	/**
+	 * Gets the principal name.
+	 *
+	 * @return the principal name
+	 */
 	public String getPrincipalName() {
 		return principalName;
 	}
 
+	/**
+	 * Sets the authentication type.
+	 *
+	 * @param authenticationType
+	 *            the new authentication type
+	 */
 	public void setAuthenticationType(final String authenticationType) {
 		this.authenticationType = authenticationType;
 	}
 
+	/**
+	 * Gets the authentication type.
+	 *
+	 * @return the authentication type
+	 */
 	public String getAuthenticationType() {
 		return authenticationType;
 	}
 
 	/**
+	 * Sets the principal information.
+	 *
 	 * @param principalInformation
 	 *            the principalInformation to set
 	 */
@@ -92,6 +127,8 @@ public abstract class AuthenticationEvent extends Event {
 	}
 
 	/**
+	 * Gets the principal information.
+	 *
 	 * @return the principalInformation
 	 */
 	public PrincipalInformation getPrincipalInformation() {
