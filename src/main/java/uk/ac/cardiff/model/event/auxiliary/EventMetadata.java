@@ -86,8 +86,8 @@ public class EventMetadata {
 
 	@Override
 	public String toString() {
-		return "EventMetadata [entityId=" + raptorEntityId + ", serviceName=" + serviceName + ", organisationName="
-				+ organisationName + "]";
+		return "EventMetadata [raptorEntityId=" + raptorEntityId + ", serviceName=" + serviceName
+				+ ", organisationName=" + organisationName + "]";
 	}
 
 	/**

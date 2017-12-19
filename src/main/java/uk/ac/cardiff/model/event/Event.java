@@ -66,8 +66,8 @@ public abstract class Event {
 	private int eventId;
 
 	/**
-	 * The service id. This is the service that serves the event. e.g. the
-	 * authentication event.
+	 * The service id. This is the indentifier of the service that serves the event.
+	 * e.g. the authentication event, or the SAML EntityID.
 	 */
 	private String serviceId;
 
