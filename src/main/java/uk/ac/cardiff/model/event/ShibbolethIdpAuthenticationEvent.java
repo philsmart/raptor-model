@@ -41,9 +41,6 @@ import uk.ac.cardiff.utility.StringUtils;
 @DiscriminatorColumn(length = 100)
 public class ShibbolethIdpAuthenticationEvent extends AuthenticationEvent {
 
-	/** The request id. */
-	private String requestId;
-
 	/** The response binding. */
 	private String responseBinding;
 
@@ -77,7 +74,6 @@ public class ShibbolethIdpAuthenticationEvent extends AuthenticationEvent {
 	 */
 	protected ShibbolethIdpAuthenticationEvent(final ShibbolethIdpAuthenticationEvent event) {
 		super(event);
-		this.requestId = event.getRequestId();
 
 		this.responseBinding = event.getResponseBinding();
 
@@ -181,7 +177,6 @@ public class ShibbolethIdpAuthenticationEvent extends AuthenticationEvent {
 				&& EqualsUtil.areEqual(this.getEventId(), that.getEventId())
 				&& EqualsUtil.areEqual(this.getAuthenticationType(), that.getAuthenticationType())
 				&& EqualsUtil.areEqual(this.getServiceHost(), that.getServiceHost())
-				&& EqualsUtil.areEqual(this.getRequestId(), that.getRequestId())
 				&& EqualsUtil.areEqual(this.getResponseBinding(), that.getResponseBinding())
 				&& EqualsUtil.areEqual(this.getResourceHost(), that.getResourceHost())
 				&& EqualsUtil.areEqual(this.getRequestBinding(), that.getRequestBinding())
@@ -192,25 +187,6 @@ public class ShibbolethIdpAuthenticationEvent extends AuthenticationEvent {
 				&& Arrays.equals(this.getAttributes(), that.getAttributes());
 
 		return areEqual;
-	}
-
-	/**
-	 * Sets the request id.
-	 * 
-	 * @param requestId
-	 *            the new request id
-	 */
-	public void setRequestId(final String requestId) {
-		this.requestId = requestId;
-	}
-
-	/**
-	 * Gets the request id.
-	 * 
-	 * @return the request id
-	 */
-	public String getRequestId() {
-		return requestId;
 	}
 
 	/**
@@ -247,7 +223,6 @@ public class ShibbolethIdpAuthenticationEvent extends AuthenticationEvent {
 		hash = HashCodeUtil.hash(hash, getAuthenticationType());
 		hash = HashCodeUtil.hash(hash, getEventId());
 		hash = HashCodeUtil.hash(hash, getServiceHost());
-		hash = HashCodeUtil.hash(hash, getRequestId());
 		hash = HashCodeUtil.hash(hash, getResponseBinding());
 		hash = HashCodeUtil.hash(hash, getResourceHost());
 		hash = HashCodeUtil.hash(hash, getAttributes());
